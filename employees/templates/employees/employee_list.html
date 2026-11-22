@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<h1>Employee Records</h1>
+
+<a href="{% url 'create_employee' %}">Add Employee</a>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Department</th>
+        <th>Salary</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for employee in employees %}
+    <tr>
+        <td>{{ employee.id }}</td>
+        <td>{{ employee.name }}</td>
+        <td>{{ employee.email }}</td>
+        <td>{{ employee.department }}</td>
+        <td>{{ employee.salary }}</td>
+
+        <td>
+            <a href="{% url 'update_employee' employee.id %}">
+                Edit
+            </a>
+
+            <a href="{% url 'delete_employee' employee.id %}">
+                Delete
+            </a>
+        </td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="6">No employees found.</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

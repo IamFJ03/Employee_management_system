@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<h1>Update Employee</h1>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <label>Name:</label>
+    <input type="text" name="name" value="{{ employee.name }}" required>
+
+    <label>Email:</label>
+    <input type="email" name="email" value="{{ employee.email }}" required>
+
+    <label>Department:</label>
+    <input type="text" name="department" value="{{ employee.department }}" required>
+
+    <label>Salary:</label>
+    <input type="number" name="salary" value="{{ employee.salary }}" step="0.01">
+
+    <label>Joining Date:</label>
+    <input type="date" name="joining_date" value="{{ employee.joining_date|date:'Y-m-d' }}">
+
+    <label>Active:</label>
+    <input type="checkbox" name="is_active" {% if employee.is_active %}checked{% endif %}>
+
+    <button type="submit">Update Employee</button>
+</form>
+
+</body>
+</html>
